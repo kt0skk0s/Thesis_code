@@ -1,0 +1,418 @@
+Classical ML baselines for GAME GEQ Positive-Negative Affect binary
+==========================================================================================
+
+SPLIT_DIR: D:\BIRAFFE2_DATASET\PROCESSED_FINAL\gnn_results\subject_level_splits_game_geq_pa_na
+Features: graph.x flattened from [8, 50] to [400]
+Graph structure was NOT used in these baselines.
+Two independent classifiers were trained, one for each output.
+
+SUMMARY TABLE
+              model task  val_mean_task_f1  val_mean_binary_macro_f1  val_exact_match_accuracy  test_mean_task_f1  test_mean_binary_macro_f1  test_exact_match_accuracy  test_positive_affect_f1  test_positive_affect_macro_f1  test_positive_affect_accuracy  pred_positive_affect_0  pred_positive_affect_1  test_negative_affect_f1  test_negative_affect_macro_f1  test_negative_affect_accuracy  pred_negative_affect_0  pred_negative_affect_1
+            RBF SVM game          0.374607                  0.492196                  0.343990           0.331857                   0.474440                   0.287081                 0.331984                       0.448887                       0.473684                     313                     314                 0.331731                       0.499994                       0.556619                     450                     177
+         Linear SVM game          0.405141                  0.486266                  0.303069           0.347738                   0.463274                   0.256778                 0.314894                       0.452090                       0.486443                     337                     290                 0.380583                       0.474459                       0.491228                     351                     276
+Logistic Regression game          0.410426                  0.490474                  0.299233           0.346972                   0.461882                   0.255183                 0.315565                       0.453324                       0.488038                     338                     289                 0.378378                       0.470439                       0.486443                     348                     279
+      Random Forest game          0.268804                  0.466356                  0.396419           0.234545                   0.454713                   0.347687                 0.469091                       0.527159                       0.534290                     257                     370                 0.000000                       0.382266                       0.618820                     627                       0
+                MLP game          0.299752                  0.475643                  0.338875           0.198124                   0.431700                   0.272727                 0.351967                       0.473000                       0.500797                     324                     303                 0.044280                       0.390401                       0.586922                     595                      32
+
+
+
+DETAILED RESULTS
+
+==========================================================================================
+MODEL: Logistic Regression
+==========================================================================================
+
+VALIDATION RESULTS:
+positive_affect_accuracy: 0.49872122762148335
+positive_affect_precision: 0.47642679900744417
+positive_affect_recall: 0.514745308310992
+positive_affect_f1: 0.4948453608247423
+positive_affect_macro_f1: 0.49869171594536604
+true_positive_affect_0: 409
+true_positive_affect_1: 373
+pred_positive_affect_0: 379
+pred_positive_affect_1: 403
+negative_affect_accuracy: 0.5294117647058824
+negative_affect_precision: 0.28343949044585987
+negative_affect_recall: 0.38362068965517243
+negative_affect_f1: 0.326007326007326
+negative_affect_macro_f1: 0.4822571011176119
+true_negative_affect_0: 550
+true_negative_affect_1: 232
+pred_negative_affect_0: 468
+pred_negative_affect_1: 314
+mean_task_f1: 0.4104263434160341
+mean_binary_macro_f1: 0.49047440853148894
+exact_match_accuracy: 0.29923273657289
+
+TEST RESULTS:
+positive_affect_accuracy: 0.4880382775119617
+positive_affect_precision: 0.2560553633217993
+positive_affect_recall: 0.4111111111111111
+positive_affect_f1: 0.31556503198294245
+positive_affect_macro_f1: 0.4533239172653566
+true_positive_affect_0: 447
+true_positive_affect_1: 180
+pred_positive_affect_0: 338
+pred_positive_affect_1: 289
+negative_affect_accuracy: 0.4864433811802233
+negative_affect_precision: 0.35125448028673834
+negative_affect_recall: 0.4100418410041841
+negative_affect_f1: 0.3783783783783784
+negative_affect_macro_f1: 0.4704391891891892
+true_negative_affect_0: 388
+true_negative_affect_1: 239
+pred_negative_affect_0: 348
+pred_negative_affect_1: 279
+mean_task_f1: 0.34697170518066045
+mean_binary_macro_f1: 0.46188155322727287
+exact_match_accuracy: 0.2551834130781499
+
+Confusion matrix - positive_affect
+[[232 215]
+ [106  74]]
+
+Classification report - positive_affect
+                   precision    recall  f1-score   support
+
+positive_affect_0       0.69      0.52      0.59       447
+positive_affect_1       0.26      0.41      0.32       180
+
+         accuracy                           0.49       627
+        macro avg       0.47      0.47      0.45       627
+     weighted avg       0.56      0.49      0.51       627
+
+
+Confusion matrix - negative_affect
+[[207 181]
+ [141  98]]
+
+Classification report - negative_affect
+                   precision    recall  f1-score   support
+
+negative_affect_0       0.59      0.53      0.56       388
+negative_affect_1       0.35      0.41      0.38       239
+
+         accuracy                           0.49       627
+        macro avg       0.47      0.47      0.47       627
+     weighted avg       0.50      0.49      0.49       627
+
+
+==========================================================================================
+MODEL: Linear SVM
+==========================================================================================
+
+VALIDATION RESULTS:
+positive_affect_accuracy: 0.4948849104859335
+positive_affect_precision: 0.4729064039408867
+positive_affect_recall: 0.514745308310992
+positive_affect_f1: 0.49293966623876767
+positive_affect_macro_f1: 0.4948774764314857
+true_positive_affect_0: 409
+true_positive_affect_1: 373
+pred_positive_affect_0: 376
+pred_positive_affect_1: 406
+negative_affect_accuracy: 0.5268542199488491
+negative_affect_precision: 0.27741935483870966
+negative_affect_recall: 0.3706896551724138
+negative_affect_f1: 0.3173431734317343
+negative_affect_macro_f1: 0.4776539741914053
+true_negative_affect_0: 550
+true_negative_affect_1: 232
+pred_negative_affect_0: 472
+pred_negative_affect_1: 310
+mean_task_f1: 0.405141419835251
+mean_binary_macro_f1: 0.4862657253114455
+exact_match_accuracy: 0.3030690537084399
+
+TEST RESULTS:
+positive_affect_accuracy: 0.4864433811802233
+positive_affect_precision: 0.25517241379310346
+positive_affect_recall: 0.4111111111111111
+positive_affect_f1: 0.3148936170212766
+positive_affect_macro_f1: 0.45208966565349545
+true_positive_affect_0: 447
+true_positive_affect_1: 180
+pred_positive_affect_0: 337
+pred_positive_affect_1: 290
+negative_affect_accuracy: 0.49122807017543857
+negative_affect_precision: 0.35507246376811596
+negative_affect_recall: 0.4100418410041841
+negative_affect_f1: 0.38058252427184464
+negative_affect_macro_f1: 0.4744590564525665
+true_negative_affect_0: 388
+true_negative_affect_1: 239
+pred_negative_affect_0: 351
+pred_negative_affect_1: 276
+mean_task_f1: 0.3477380706465606
+mean_binary_macro_f1: 0.463274361053031
+exact_match_accuracy: 0.2567783094098884
+
+Confusion matrix - positive_affect
+[[231 216]
+ [106  74]]
+
+Classification report - positive_affect
+                   precision    recall  f1-score   support
+
+positive_affect_0       0.69      0.52      0.59       447
+positive_affect_1       0.26      0.41      0.31       180
+
+         accuracy                           0.49       627
+        macro avg       0.47      0.46      0.45       627
+     weighted avg       0.56      0.49      0.51       627
+
+
+Confusion matrix - negative_affect
+[[210 178]
+ [141  98]]
+
+Classification report - negative_affect
+                   precision    recall  f1-score   support
+
+negative_affect_0       0.60      0.54      0.57       388
+negative_affect_1       0.36      0.41      0.38       239
+
+         accuracy                           0.49       627
+        macro avg       0.48      0.48      0.47       627
+     weighted avg       0.51      0.49      0.50       627
+
+
+==========================================================================================
+MODEL: RBF SVM
+==========================================================================================
+
+VALIDATION RESULTS:
+positive_affect_accuracy: 0.4859335038363171
+positive_affect_precision: 0.46539379474940334
+positive_affect_recall: 0.5227882037533512
+positive_affect_f1: 0.49242424242424243
+positive_affect_macro_f1: 0.48584942691160304
+true_positive_affect_0: 409
+true_positive_affect_1: 373
+pred_positive_affect_0: 363
+pred_positive_affect_1: 419
+negative_affect_accuracy: 0.6150895140664961
+negative_affect_precision: 0.30057803468208094
+negative_affect_recall: 0.22413793103448276
+negative_affect_f1: 0.25679012345679014
+negative_affect_macro_f1: 0.498541739899232
+true_negative_affect_0: 550
+true_negative_affect_1: 232
+pred_negative_affect_0: 609
+pred_negative_affect_1: 173
+mean_task_f1: 0.3746071829405163
+mean_binary_macro_f1: 0.4921955834054175
+exact_match_accuracy: 0.34398976982097185
+
+TEST RESULTS:
+positive_affect_accuracy: 0.47368421052631576
+positive_affect_precision: 0.2611464968152866
+positive_affect_recall: 0.45555555555555555
+positive_affect_f1: 0.3319838056680162
+positive_affect_macro_f1: 0.44888663967611336
+true_positive_affect_0: 447
+true_positive_affect_1: 180
+pred_positive_affect_0: 313
+pred_positive_affect_1: 314
+negative_affect_accuracy: 0.5566188197767146
+negative_affect_precision: 0.3898305084745763
+negative_affect_recall: 0.28870292887029286
+negative_affect_f1: 0.3317307692307692
+negative_affect_macro_f1: 0.49999426289700755
+true_negative_affect_0: 388
+true_negative_affect_1: 239
+pred_negative_affect_0: 450
+pred_negative_affect_1: 177
+mean_task_f1: 0.3318572874493927
+mean_binary_macro_f1: 0.4744404512865604
+exact_match_accuracy: 0.28708133971291866
+
+Confusion matrix - positive_affect
+[[215 232]
+ [ 98  82]]
+
+Classification report - positive_affect
+                   precision    recall  f1-score   support
+
+positive_affect_0       0.69      0.48      0.57       447
+positive_affect_1       0.26      0.46      0.33       180
+
+         accuracy                           0.47       627
+        macro avg       0.47      0.47      0.45       627
+     weighted avg       0.56      0.47      0.50       627
+
+
+Confusion matrix - negative_affect
+[[280 108]
+ [170  69]]
+
+Classification report - negative_affect
+                   precision    recall  f1-score   support
+
+negative_affect_0       0.62      0.72      0.67       388
+negative_affect_1       0.39      0.29      0.33       239
+
+         accuracy                           0.56       627
+        macro avg       0.51      0.51      0.50       627
+     weighted avg       0.53      0.56      0.54       627
+
+
+==========================================================================================
+MODEL: Random Forest
+==========================================================================================
+
+VALIDATION RESULTS:
+positive_affect_accuracy: 0.520460358056266
+positive_affect_precision: 0.4977168949771689
+positive_affect_recall: 0.5844504021447721
+positive_affect_f1: 0.5376078914919852
+positive_affect_macro_f1: 0.5197999616822475
+true_positive_affect_0: 409
+true_positive_affect_1: 373
+pred_positive_affect_0: 344
+pred_positive_affect_1: 438
+negative_affect_accuracy: 0.7033248081841432
+negative_affect_precision: 0.0
+negative_affect_recall: 0.0
+negative_affect_f1: 0.0
+negative_affect_macro_f1: 0.41291291291291293
+true_negative_affect_0: 550
+true_negative_affect_1: 232
+pred_negative_affect_0: 782
+pred_negative_affect_1: 0
+mean_task_f1: 0.2688039457459926
+mean_binary_macro_f1: 0.46635643729758025
+exact_match_accuracy: 0.39641943734015345
+
+TEST RESULTS:
+positive_affect_accuracy: 0.5342902711323764
+positive_affect_precision: 0.34864864864864864
+positive_affect_recall: 0.7166666666666667
+positive_affect_f1: 0.4690909090909091
+positive_affect_macro_f1: 0.5271590909090909
+true_positive_affect_0: 447
+true_positive_affect_1: 180
+pred_positive_affect_0: 257
+pred_positive_affect_1: 370
+negative_affect_accuracy: 0.6188197767145136
+negative_affect_precision: 0.0
+negative_affect_recall: 0.0
+negative_affect_f1: 0.0
+negative_affect_macro_f1: 0.38226600985221676
+true_negative_affect_0: 388
+true_negative_affect_1: 239
+pred_negative_affect_0: 627
+pred_negative_affect_1: 0
+mean_task_f1: 0.23454545454545456
+mean_binary_macro_f1: 0.45471255038065383
+exact_match_accuracy: 0.34768740031897927
+
+Confusion matrix - positive_affect
+[[206 241]
+ [ 51 129]]
+
+Classification report - positive_affect
+                   precision    recall  f1-score   support
+
+positive_affect_0       0.80      0.46      0.59       447
+positive_affect_1       0.35      0.72      0.47       180
+
+         accuracy                           0.53       627
+        macro avg       0.58      0.59      0.53       627
+     weighted avg       0.67      0.53      0.55       627
+
+
+Confusion matrix - negative_affect
+[[388   0]
+ [239   0]]
+
+Classification report - negative_affect
+                   precision    recall  f1-score   support
+
+negative_affect_0       0.62      1.00      0.76       388
+negative_affect_1       0.00      0.00      0.00       239
+
+         accuracy                           0.62       627
+        macro avg       0.31      0.50      0.38       627
+     weighted avg       0.38      0.62      0.47       627
+
+
+==========================================================================================
+MODEL: MLP
+==========================================================================================
+
+VALIDATION RESULTS:
+positive_affect_accuracy: 0.4936061381074169
+positive_affect_precision: 0.4721549636803874
+positive_affect_recall: 0.5227882037533512
+positive_affect_f1: 0.4961832061068702
+positive_affect_macro_f1: 0.4935928884004788
+true_positive_affect_0: 409
+true_positive_affect_1: 373
+pred_positive_affect_0: 369
+pred_positive_affect_1: 413
+negative_affect_accuracy: 0.6892583120204604
+negative_affect_precision: 0.358974358974359
+negative_affect_recall: 0.0603448275862069
+negative_affect_f1: 0.1033210332103321
+negative_affect_macro_f1: 0.457692999203774
+true_negative_affect_0: 550
+true_negative_affect_1: 232
+pred_negative_affect_0: 743
+pred_negative_affect_1: 39
+mean_task_f1: 0.29975211965860116
+mean_binary_macro_f1: 0.4756429438021264
+exact_match_accuracy: 0.3388746803069054
+
+TEST RESULTS:
+positive_affect_accuracy: 0.5007974481658692
+positive_affect_precision: 0.28052805280528054
+positive_affect_recall: 0.4722222222222222
+positive_affect_f1: 0.35196687370600416
+positive_affect_macro_f1: 0.4730002980721979
+true_positive_affect_0: 447
+true_positive_affect_1: 180
+pred_positive_affect_0: 324
+pred_positive_affect_1: 303
+negative_affect_accuracy: 0.5869218500797448
+negative_affect_precision: 0.1875
+negative_affect_recall: 0.02510460251046025
+negative_affect_f1: 0.04428044280442804
+negative_affect_macro_f1: 0.39040064866569313
+true_negative_affect_0: 388
+true_negative_affect_1: 239
+pred_negative_affect_0: 595
+pred_negative_affect_1: 32
+mean_task_f1: 0.1981236582552161
+mean_binary_macro_f1: 0.4317004733689455
+exact_match_accuracy: 0.2727272727272727
+
+Confusion matrix - positive_affect
+[[229 218]
+ [ 95  85]]
+
+Classification report - positive_affect
+                   precision    recall  f1-score   support
+
+positive_affect_0       0.71      0.51      0.59       447
+positive_affect_1       0.28      0.47      0.35       180
+
+         accuracy                           0.50       627
+        macro avg       0.49      0.49      0.47       627
+     weighted avg       0.58      0.50      0.52       627
+
+
+Confusion matrix - negative_affect
+[[362  26]
+ [233   6]]
+
+Classification report - negative_affect
+                   precision    recall  f1-score   support
+
+negative_affect_0       0.61      0.93      0.74       388
+negative_affect_1       0.19      0.03      0.04       239
+
+         accuracy                           0.59       627
+        macro avg       0.40      0.48      0.39       627
+     weighted avg       0.45      0.59      0.47       627

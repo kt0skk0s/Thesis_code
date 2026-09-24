@@ -1,0 +1,86 @@
+Weighted GCN on GAME GEQ Positive-Negative Affect
+================================================================================
+
+Dataset split:
+SPLIT_DIR: D:\BIRAFFE2_DATASET\PROCESSED_FINAL\gnn_results\subject_level_splits_game_geq_pa_na
+Subject-level split, no subject overlap between train/validation/test
+
+Targets:
+Output 1: positive_affect
+Output 2: negative_affect
+
+Model:
+Weighted GCN
+GCNConv(50 -> 64)
+GCNConv(64 -> 64)
+Global mean pooling
+Linear(64 -> 64)
+Linear(64 -> 2)
+
+Training setup:
+Batch size: 64
+Max epochs: 100
+Optimizer: Adam
+Learning rate: 0.001
+Weight decay: 1e-4
+Dropout: 0.4
+Loss: BCEWithLogitsLoss with pos_weight
+Threshold fixed at 0.5
+Edge weight: absolute Pearson correlation |edge_attr|
+
+pos_weight positive_affect: 0.9887387387387387
+pos_weight negative_affect: 2.6791666666666667
+
+Best epoch: 1
+Best validation mean task F1: 0.314365671641791
+
+Test loss: 0.6928819787749453
+
+Test metrics:
+positive_affect_accuracy: 0.3492822966507177
+positive_affect_precision: 0.29044117647058826
+positive_affect_recall: 0.8777777777777778
+positive_affect_f1: 0.43646408839779005
+positive_affect_macro_f1: 0.33332638382153656
+negative_affect_accuracy: 0.6188197767145136
+negative_affect_precision: 0.0
+negative_affect_recall: 0.0
+negative_affect_f1: 0.0
+negative_affect_macro_f1: 0.38226600985221676
+mean_task_f1: 0.21823204419889503
+mean_binary_macro_f1: 0.3577961968368767
+macro_f1: 0.21823204419889503
+exact_match_accuracy: 0.2838915470494418
+pred_positive_affect_0: 83
+pred_positive_affect_1: 544
+pred_negative_affect_0: 627
+pred_negative_affect_1: 0
+
+Confusion matrix - positive_affect
+[[ 61 386]
+ [ 22 158]]
+
+Confusion matrix - negative_affect
+[[388   0]
+ [239   0]]
+
+Classification report - positive_affect
+                   precision    recall  f1-score   support
+
+positive_affect_0       0.73      0.14      0.23       447
+positive_affect_1       0.29      0.88      0.44       180
+
+         accuracy                           0.35       627
+        macro avg       0.51      0.51      0.33       627
+     weighted avg       0.61      0.35      0.29       627
+
+
+Classification report - negative_affect
+                   precision    recall  f1-score   support
+
+negative_affect_0       0.62      1.00      0.76       388
+negative_affect_1       0.00      0.00      0.00       239
+
+         accuracy                           0.62       627
+        macro avg       0.31      0.50      0.38       627
+     weighted avg       0.38      0.62      0.47       627

@@ -1,0 +1,96 @@
+Weighted GCN with WeightedRandomSampler on PRE/POST Valence-Arousal
+================================================================================
+
+Dataset split:
+SPLIT_DIR: D:\BIRAFFE2_DATASET\PROCESSED_FINAL\gnn_results\subject_level_splits_prepost_va_original
+Subject-level split, no subject overlap between train/validation/test
+
+Targets:
+Output 1: valence
+Output 2: arousal
+
+Model:
+Weighted GCN
+GCNConv(50 -> 64)
+GCNConv(64 -> 64)
+Global mean pooling
+Linear(64 -> 64)
+Linear(64 -> 2)
+
+Training setup:
+Batch size: 64
+Max epochs: 100
+Optimizer: Adam
+Learning rate: 0.001
+Weight decay: 1e-4
+Dropout: 0.4
+Loss: BCEWithLogitsLoss WITHOUT pos_weight
+Imbalance handling: WeightedRandomSampler based on joint labels
+Threshold fixed at 0.5
+Edge weight: absolute Pearson correlation |edge_attr|
+
+Train joint label counts:
+class 0: 1585
+class 1: 2106
+class 2: 1065
+class 3: 1507
+
+Joint class mapping:
+[0,0] -> class 0
+[0,1] -> class 1
+[1,0] -> class 2
+[1,1] -> class 3
+
+Best epoch: 3
+Best validation mean task F1: 0.6396808303034396
+
+Test loss: 0.6925720158508558
+
+Test metrics:
+valence_accuracy: 0.41054852320675106
+valence_precision: 0.40388864339372516
+valence_recall: 0.9501039501039501
+valence_f1: 0.5668217054263566
+valence_macro_f1: 0.32235474710261725
+arousal_accuracy: 0.6029535864978903
+arousal_precision: 0.6225513616817965
+arousal_recall: 0.8961485557083907
+arousal_f1: 0.7347053848322526
+arousal_macro_f1: 0.4729687862970986
+mean_task_f1: 0.6507635451293046
+mean_binary_macro_f1: 0.3976617666998579
+macro_f1: 0.6507635451293046
+exact_match_accuracy: 0.2518987341772152
+pred_valence_0: 107
+pred_valence_1: 2263
+pred_arousal_0: 277
+pred_arousal_1: 2093
+
+Confusion matrix - valence
+[[  59 1349]
+ [  48  914]]
+
+Confusion matrix - arousal
+[[ 126  790]
+ [ 151 1303]]
+
+Classification report - valence
+              precision    recall  f1-score   support
+
+   valence_0       0.55      0.04      0.08      1408
+   valence_1       0.40      0.95      0.57       962
+
+    accuracy                           0.41      2370
+   macro avg       0.48      0.50      0.32      2370
+weighted avg       0.49      0.41      0.28      2370
+
+
+Classification report - arousal
+              precision    recall  f1-score   support
+
+   arousal_0       0.45      0.14      0.21       916
+   arousal_1       0.62      0.90      0.73      1454
+
+    accuracy                           0.60      2370
+   macro avg       0.54      0.52      0.47      2370
+weighted avg       0.56      0.60      0.53      2370

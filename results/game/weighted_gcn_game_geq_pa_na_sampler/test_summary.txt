@@ -1,0 +1,96 @@
+Weighted GCN with WeightedRandomSampler on GAME GEQ Positive-Negative Affect
+================================================================================
+
+Dataset split:
+SPLIT_DIR: D:\BIRAFFE2_DATASET\PROCESSED_FINAL\gnn_results\subject_level_splits_game_geq_pa_na
+Subject-level split, no subject overlap between train/validation/test
+
+Targets:
+Output 1: positive_affect
+Output 2: negative_affect
+
+Model:
+Weighted GCN
+GCNConv(50 -> 64)
+GCNConv(64 -> 64)
+Global mean pooling
+Linear(64 -> 64)
+Linear(64 -> 2)
+
+Training setup:
+Batch size: 64
+Max epochs: 100
+Optimizer: Adam
+Learning rate: 0.001
+Weight decay: 1e-4
+Dropout: 0.4
+Loss: BCEWithLogitsLoss WITHOUT pos_weight
+Imbalance handling: WeightedRandomSampler based on joint labels
+Threshold fixed at 0.5
+Edge weight: absolute Pearson correlation |edge_attr|
+
+Train joint label counts:
+class 0: 407
+class 1: 471
+class 2: 879
+class 3: 9
+
+Joint class mapping:
+[0,0] -> class 0
+[0,1] -> class 1
+[1,0] -> class 2
+[1,1] -> class 3
+
+Best epoch: 1
+Best validation mean task F1: 0.36734693877551017
+
+Test loss: 0.6896890933243662
+
+Test metrics:
+positive_affect_accuracy: 0.5534290271132376
+positive_affect_precision: 0.2807017543859649
+positive_affect_recall: 0.35555555555555557
+positive_affect_f1: 0.3137254901960784
+positive_affect_macro_f1: 0.49137811152829924
+negative_affect_accuracy: 0.5406698564593302
+negative_affect_precision: 0.4061302681992337
+negative_affect_recall: 0.4435146443514644
+negative_affect_f1: 0.424
+negative_affect_macro_f1: 0.5210185676392572
+mean_task_f1: 0.3688627450980392
+mean_binary_macro_f1: 0.5061983395837782
+macro_f1: 0.3688627450980392
+exact_match_accuracy: 0.2759170653907496
+pred_positive_affect_0: 399
+pred_positive_affect_1: 228
+pred_negative_affect_0: 366
+pred_negative_affect_1: 261
+
+Confusion matrix - positive_affect
+[[283 164]
+ [116  64]]
+
+Confusion matrix - negative_affect
+[[233 155]
+ [133 106]]
+
+Classification report - positive_affect
+                   precision    recall  f1-score   support
+
+positive_affect_0       0.71      0.63      0.67       447
+positive_affect_1       0.28      0.36      0.31       180
+
+         accuracy                           0.55       627
+        macro avg       0.49      0.49      0.49       627
+     weighted avg       0.59      0.55      0.57       627
+
+
+Classification report - negative_affect
+                   precision    recall  f1-score   support
+
+negative_affect_0       0.64      0.60      0.62       388
+negative_affect_1       0.41      0.44      0.42       239
+
+         accuracy                           0.54       627
+        macro avg       0.52      0.52      0.52       627
+     weighted avg       0.55      0.54      0.54       627
