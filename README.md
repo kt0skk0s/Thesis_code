@@ -85,7 +85,7 @@
 
 ---
 
-### `src/graphs/`
+### `src/graph/`
 
 Περιέχει τον κώδικα κατασκευής του graph dataset.
 
@@ -179,6 +179,89 @@ Weighted GCN με `WeightedRandomSampler` για αντιμετώπιση του
 
 ---
 
+#### `train_single_target_gcn.py`
+
+Εκπαιδεύει ξεχωριστό Graph Convolutional Network (GCN) για κάθε binary classification target.
+
+Σε αντίθεση με την αρχική προσέγγιση του Weighted GCN, όπου ένα κοινό μοντέλο προβλέπει δύο outputs ταυτόχρονα, στη νέα προσέγγιση κάθε target προβλέπεται από ανεξάρτητο μοντέλο.
+
+Χρησιμοποιούνται τα ίδια graph features και τα subject-independent Train / Validation / Test splits.
+
+Τα classification targets είναι:
+
+**PRE/POST:**
+
+- Valence
+- Arousal
+
+**GAME:**
+
+- Positive Affect
+- Negative Affect
+
+Συνολικά εκπαιδεύονται 4 ανεξάρτητα GCN models, ένα για κάθε target.
+
+---
+
+#### `train_single_target_gat.py`
+
+Εκπαιδεύει ξεχωριστό Graph Attention Network (GAT) για κάθε binary classification target.
+
+Το GAT χρησιμοποιεί attention mechanisms για να μαθαίνει τη σχετική σημασία των γειτονικών nodes κατά τη διαδικασία του message passing.
+
+Η graph connectivity προκύπτει από την Pearson correlation, ενώ το GAT μαθαίνει τα attention coefficients μεταξύ των συνδεδεμένων nodes.
+
+Χρησιμοποιούνται τα ίδια graph datasets και subject-independent splits με το single-target GCN.
+
+Πραγματοποιούνται 4 ανεξάρτητα classification experiments:
+
+- PRE/POST → Valence
+- PRE/POST → Arousal
+- GAME → Positive Affect
+- GAME → Negative Affect
+
+---
+
+#### `train_single_target_gin.py`
+
+Εκπαιδεύει ξεχωριστό Graph Isomorphism Network (GIN) για κάθε binary classification target.
+
+Το GIN χρησιμοποιεί aggregation των χαρακτηριστικών των γειτονικών nodes και MLPs για την εκμάθηση των graph representations.
+
+Η Pearson correlation χρησιμοποιείται για τον καθορισμό της graph topology.
+
+Χρησιμοποιούνται τα ίδια graph datasets και subject-independent splits με τα GCN και GAT.
+
+Πραγματοποιούνται 4 ανεξάρτητα classification experiments:
+
+- PRE/POST → Valence
+- PRE/POST → Arousal
+- GAME → Positive Affect
+- GAME → Negative Affect
+
+---
+
+### Single-target Classification
+
+Στην αρχική προσέγγιση χρησιμοποιήθηκε ένα Weighted GCN με δύο outputs ανά classification task:
+
+- PRE/POST → Valence και Arousal
+- GAME → Positive Affect και Negative Affect
+
+Στη συνέχεια εξετάστηκε η προσέγγιση single-target classification, όπου κάθε συναισθηματική μεταβλητή προβλέπεται ανεξάρτητα.
+
+Για τη σύγκριση χρησιμοποιήθηκαν τρεις διαφορετικές GNN αρχιτεκτονικές:
+
+- GCN (Graph Convolutional Network)
+- GAT (Graph Attention Network)
+- GIN (Graph Isomorphism Network)
+
+Κάθε αρχιτεκτονική εκπαιδεύεται ξεχωριστά για τα 4 targets, δίνοντας συνολικά 12 single-target training experiments.
+
+Για την αξιολόγηση χρησιμοποιούνται τα ίδια subject-independent splits, με βασική μετρική σύγκρισης το Macro-F1.
+
+---
+
 # `data/`
 
 Περιέχει τα βασικά δεδομένα που ανέβηκαν για έλεγχο της τελικής διαδικασίας.
@@ -206,7 +289,7 @@ Weighted GCN με `WeightedRandomSampler` για αντιμετώπιση του
 
 ---
 
-## `data/labels/game/`
+## `data/labels/games/`
 
 ### `game_geq_pa_na_labels.csv`
 
@@ -221,7 +304,7 @@ Weighted GCN με `WeightedRandomSampler` για αντιμετώπιση του
 
 ---
 
-## `data/split/`
+## `data/labels/data/`
 
 ### `subject_split_subjects.json`
 
@@ -289,6 +372,6 @@ Subject-level Train / Validation / Test Split
 ↓  
 PRE/POST και GAME Tasks  
 ↓  
-Weighted GCN / Classical ML  
+Weighted GCN / Classical ML / Single-target GCN, GAT, GIN  
 ↓  
 Evaluation
